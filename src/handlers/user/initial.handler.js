@@ -17,15 +17,15 @@ const initialHandler = async({socket,userId,payload})=>{
     game.addUser(user)
     
 
-    const initialResponse = createResponse(
-        HANDLER_IDS.INITIAL,
-        RESPONSE_SUCCESS_CODE,
-        {userId:deviceId},
-        deviceId
-    )
+    // const initialResponse = createResponse(
+    //     HANDLER_IDS.INITIAL,
+    //     RESPONSE_SUCCESS_CODE,
+    //     {userId:deviceId},
+    //     deviceId
+    // )
     
     //response is sent back to client confirming that their initial connections has been successful
-    socket.write(initialResponse);
+    // socket.write(initialResponse);
 
     }catch(error){
         handleError(socket,error);
