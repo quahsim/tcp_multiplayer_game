@@ -4,7 +4,7 @@ import { getProtoMessages } from '../../init/loadProtos.js';
 import { config } from '../../config/config.js';
 import { PACKET_TYPE } from '../../constants/header.js';
 
-export const createResponse = (handlerId, responseCode, data = null, userId) => {
+export const createResponse = (handlerId, responseCode, data = null) => {
   //load protobuf messages
   const protoMessages = getProtoMessages();
   const Response = protoMessages.response.Response;
@@ -21,7 +21,7 @@ export const createResponse = (handlerId, responseCode, data = null, userId) => 
 
   //create packet buffer length
   const packetLength = Buffer.alloc(config.packet.totalLength);
-  packetLength.writeUInt32BE(buffer.length + config.packet.typeLength, 0); // 패킷 길이에 타입 바이트 포함
+  packetLength.writeUInt32BE(buffer.length + config.packet.typeLength, 0); 
 
   //create packet type buffer
   const packetType = Buffer.alloc(config.packet.typeLength);

@@ -4,12 +4,18 @@ import { HANDLER_IDS, RESPONSE_SUCCESS_CODE } from "../../constants/handlerIds.j
 import { addUser } from "../../sessions/user.session.js";
 import { handleError } from "../../utils/error/errorHandler.js";
 import { createResponse } from "../../utils/response/createResponse.js";
+import { getFirstGameSession } from "../../sessions/game.session.js";
 
 const initialHandler = async({socket,userId,payload})=>{
     try{
         const{deviceId,playerId}=payload;
-
-    addUser(socket,deviceId,playerId);
+    
+    //this addUser is from user Session
+    const user = addUser(socket,deviceId,playerId)
+    const game = getFirstGameSession();
+    //this addUser is from Game Class
+    game.addUser(user)
+    
 
     const initialResponse = createResponse(
         HANDLER_IDS.INITIAL,

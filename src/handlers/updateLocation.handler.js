@@ -1,8 +1,9 @@
-import { getGameSession } from '../sessions/game.session.js';
+import { getGameSession,getFirstGameSession } from '../sessions/game.session.js';
 import { getUserById } from '../sessions/user.session.js';
 import { handleError } from '../utils/error/errorHandler.js';
 import CustomError from '../utils/error/customError.js';
 import { ErrorCodes } from '../utils/error/errorCodes.js';
+import { getProtoMessages } from '../init/loadProtos.js';
 
 const updateLocationHandler = ({ socket, userId, payload }) => {
   try {
@@ -18,8 +19,9 @@ const updateLocationHandler = ({ socket, userId, payload }) => {
       throw new CustomError(ErrorCodes.USER_NOT_FOUND, 'Cannot find user');
     }
     user.updatePosition(x, y);
-    const packet = gameSession.getAllLocation();
+    const packet = getFirstGameSession().getAllLocation();
 
+  
     socket.write(packet);
   } catch (error) {
     handleError(socket, error);

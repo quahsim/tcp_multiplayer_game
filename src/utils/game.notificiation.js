@@ -23,5 +23,10 @@ export const createLocationPacket = (users) => {
   const payload = { users };
   const message = Location.create(payload);
   const locationPacket = Location.encode(message).finish();
+
+  const LocationUpdate = getProtoMessages().game.LocationUpdate;
+  const decodedPacket = LocationUpdate.decode(locationPacket);
+  console.log('THIS IS DECODED', decodedPacket)
+
   return makeNotification(locationPacket, PACKET_TYPE.LOCATION);
 };

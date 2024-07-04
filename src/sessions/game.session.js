@@ -3,10 +3,10 @@ import Game from '../class/models/game.class.js'
 
 
 export const addGameSession = () => {
-  const session = new Game();
-  gameSession.push(session);
-  console.log(gameSession);
-  return session;
+  const game = new Game();
+  gameSession.push(game);
+  console.log('Game Session' , gameSession);
+  return game;
 };
 
 export const removeGameSession = (id) => {
@@ -22,4 +22,9 @@ export const getGameSession = (id) => {
 
 export const getAllGameSessions = () => {
   return gameSession;
+}
+
+export const getFirstGameSession = ()=>{
+  return gameSession[0];
 };
+

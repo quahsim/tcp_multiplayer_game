@@ -14,17 +14,7 @@ class User {
       this.lastUpdateTime = Date.now();
     }
 
-    // calculatePosition(latency) {
-    //   const timeDiff = latency / 1000; // 레이턴시를 초 단위로 계산
-    //   const speed = 1; // 속도 고정
-    //   const distance = speed * timeDiff;
   
-    //   // x, y 축에서 이동한 거리 계산
-    //   return {
-    //     x: this.x + distance,
-    //     y: this.y,
-    //   };
-    // }
   
   }
   
