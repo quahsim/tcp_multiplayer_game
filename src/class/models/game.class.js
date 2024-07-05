@@ -16,8 +16,13 @@ class Game {
     return this.users.find((user) => user.id === userId);
   }
 
-  removeUser(userId) {
-    this.users = this.users.filter((user) => user.id !== userId);
+  removeUser(socket) {
+    // this.users = this.users.filter((user) => user.id !== userId);
+    const index = this.users.findIndex((user) => user.socket === socket);
+    if (index !== -1) {
+      return this.users.splice(index, 1)[0];
+    }
+    
   }
 
   getMaxLatency() {
@@ -31,7 +36,6 @@ class Game {
   getAllLocation() {
     const maxLatency = this.getMaxLatency();
     const locationData = this.users.map((user) => {
-      // const { x, y } = user;
       return { id: user.id, playerId: user.playerId, x: user.x, y: user.y };
     });
     console.log(locationData);
